@@ -76,9 +76,10 @@ HTML_TEMPLATE = """
   #bottom label { font-size: 14px; color: #8B9BB4; }
   select { background: rgba(21,28,44,.9); color: #E6EDF3; border: 1px solid #2A3A55;
            border-radius: 8px; padding: 8px 12px; font-size: 14px; min-width: 260px; }
-  #status { position: absolute; top: 12px; left: 12px; z-index: 10; font-size: 13px;
-            color: #8B9BB4; background: rgba(21,28,44,.85); padding: 6px 10px;
-            border-radius: 8px; opacity: 0; transition: opacity .3s; }
+  #status { position: absolute; top: 12px; left: 12px; z-index: 10; font-size: 14px;
+            color: #FFFFFF; background: rgba(252,61,33,.92); padding: 8px 14px;
+            border-radius: 8px; opacity: 0; transition: opacity .3s;
+            box-shadow: 0 4px 14px rgba(0,0,0,.45); }
   #status.show { opacity: 1; }
 </style>
 </head>
@@ -137,7 +138,7 @@ try {
 select.onchange = () => {
   const loc = LOCATIONS[select.value];
   if (!loc || !globe) return;
-  status.textContent = 'Zooming in on ' + select.value + '…';
+  status.innerHTML = '🔍 Zooming in on <b>' + select.value + '</b>…';
   status.classList.add('show');
   // Stage 1: glide toward the region; Stage 2: sink down after stage 1 ends
   globe.pointOfView({ lat: loc.lat * 0.6, lng: loc.lng * 0.5, altitude: 2.5 }, 1500);
